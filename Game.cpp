@@ -80,7 +80,7 @@ int Game::Run(){
         loop(dt);
 
         //deals with all rendering
-        win->setText(" Score: " + std::to_string(score) + " Time: " + std::to_string(60-(int)(time.read()/1000)));
+        win->setText(" Score: " + std::to_string(score) + "       Time Left: " + std::to_string(60-(int)(time.read()/1000)) + "s");
         render();
         if(time.read() > 60000 && !theend){
             theend = true;
