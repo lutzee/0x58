@@ -183,13 +183,11 @@ EntityEnemy::EntityEnemy(){
     //Initialises the entities initial position to 0,random
     X=rand()%(1280-80);
     Y=rand()%(720-80);
-    printf("X: %f Y: %f \n", X, Y);
     dead=false;
     random = getRandom();
     //Initialises the velocity to 0
     velocityX =10+rand()%10 * random;
     velocityY =10+rand()%10 * random;
-    printf("velX: %fvelY: %f\n", velocityX, velocityY);
 
     //Initialises the size to 0
     Width=Height=0;

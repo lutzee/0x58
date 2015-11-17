@@ -228,7 +228,6 @@ void Game::loop(double dt){
                     if(AABBinstersect(entityA_AABB, entityB_AABB)){
                         //tells the entity to despawn
                         EntityList[j]->despawn();
-                        // debugging printf("Collision! a.x: %f a.y: %f b.x: %f b.y: %f i: %i j: %i player1: %i player2: %i\n", entityA_AABB.p1.x, entityA_AABB.p1.y, entityB_AABB.p1.x, entityB_AABB.p1.y, i , j, EntityList[i]->isPlayer(), EntityList[j]->isPlayer());
                         score++;
                     }
                 }
@@ -239,7 +238,6 @@ void Game::loop(double dt){
                     if(AABBinstersect(entityA_AABB, entityB_AABB)){
                         //tells the entity to despawn
                         EntityList[i]->despawn();
-                        // debugging printf("Collision! a.x: %f a.y: %f b.x: %f b.y: %f i: %i j: %i player: %i player2: %i\n", entityA_AABB.p1.x, entityA_AABB.p1.y, entityB_AABB.p1.x, entityB_AABB.p1.y, i , j, EntityList[i]->isPlayer(), EntityList[j]->isPlayer());
                         score++;
                     }
                 }
