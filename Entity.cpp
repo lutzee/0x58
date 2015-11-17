@@ -1,9 +1,4 @@
 #include "Entity.h"
-#include "Surface.h"
-#include "Animation.h"
-#include "time.h"
-#include "util.h"
-#include <cstdlib>
 
 Entity::Entity(){
 
@@ -39,7 +34,7 @@ Entity::~Entity(){
 *  @return Returns true if everything completed, false if not, false is an error and crashes
 */
 
-bool Entity::onLoad(char* File, int Width, int Height, int MaxFrames) {
+bool Entity::onLoad(std::string File, int Width, int Height, int MaxFrames) {
     // If the file is null return false, this is an error and will cause a crash
     if((entitySurface = Surface::onLoad(File)) == NULL) {
     return false;
@@ -121,7 +116,7 @@ EntityPlayer::~EntityPlayer(){
     onCleanup();
 }
 
-bool EntityPlayer::onLoad(char* File, int Width, int Height, int MaxFrames){
+bool EntityPlayer::onLoad(std::string File, int Width, int Height, int MaxFrames){
     // If the file is null return false, this is an error and will cause a crash
     if((entitySurface = Surface::onLoad(File)) == NULL) {
     return false;
@@ -207,7 +202,7 @@ EntityEnemy::~EntityEnemy(){
     onCleanup();
 }
 
-bool EntityEnemy::onLoad(char* File, int Width, int Height, int MaxFrames){
+bool EntityEnemy::onLoad(std::string File, int Width, int Height, int MaxFrames){
     // If the file is null return false, this is an error and will cause a crash
     if((entitySurface = Surface::onLoad(File)) == NULL) {
     return false;

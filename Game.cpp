@@ -111,14 +111,9 @@ int Game::Run(){
 */
 
 bool Game::init(){
-    std::cout << "In init()" << std::endl;
     //initialises the random seed using the current timestamp
     srand(time(NULL));
-    std::cout << "srand() called" << std::endl;
     //Loads the background image
-
-
-    std::cout << "Loading Background and player" << std::endl;
     if(background.onLoad("./images/background.bmp", 1280,720,1)==false){
         return false;
     }

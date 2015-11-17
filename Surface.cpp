@@ -2,11 +2,11 @@
 
 Surface::Surface(){}
 
-SDL_Surface * Surface::onLoad(char* File){
+SDL_Surface * Surface::onLoad(std::string File){
     SDL_Surface * surfTemp = NULL;
     SDL_Surface * surfReturn = NULL;
 
-    if((surfTemp = SDL_LoadBMP(File)) == NULL){
+    if((surfTemp = SDL_LoadBMP(File.c_str())) == NULL){
         return NULL;
     }
 

@@ -2,6 +2,7 @@
 #define SURFACE_H_INCLUDED
 
 #include <SDL/SDL.h>
+#include <string>
 
 class Surface{
 public:
@@ -14,7 +15,7 @@ public:
     *
     *   @param char* File File to load onto the surface
     */
-    static SDL_Surface* onLoad(char* File);
+    static SDL_Surface* onLoad(std::string File);
 
     /**
     *   Draws the specified surface onto the game surface

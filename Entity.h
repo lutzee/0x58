@@ -2,9 +2,13 @@
 #define ENTITY_H_INCLUDED
 
 #include <vector>
+#include <string>
 #include "Animation.h"
 #include "util.h"
-
+#include "Surface.h"
+#include "Animation.h"
+#include "time.h"
+#include "util.h"
 
 class Entity{
 protected:
@@ -45,7 +49,7 @@ public:
 
 public:
     //Loads the Entities image and size
-    virtual bool onLoad(char* File, int Width, int Height, int MaxFrames);
+    virtual bool onLoad(std::string File, int Width, int Height, int MaxFrames);
 
     //Function to deal with movement and collisions
     virtual void loop(const double dt);
@@ -102,7 +106,7 @@ public:
     void setVelocityX(double velocity){velocityX=velocity;}
     void setVelocityY(double velocity){velocityY=velocity;}
 
-    bool onLoad(char* File, int Width, int Height, int MaxFrames);
+    bool onLoad(std::string File, int Width, int Height, int MaxFrames);
     void loop(const double dt) ;
     void draw(SDL_Surface * surf);
     void onCleanup();
@@ -143,7 +147,7 @@ public:
     void setVelocityX(double velocity){velocityX=velocity;}
     void setVelocityY(double velocity){velocityY=velocity;}
 
-    bool onLoad(char* File, int Width, int Height, int MaxFrames);
+    bool onLoad(std::string File, int Width, int Height, int MaxFrames);
     void loop(const double dt) ;
     void draw(SDL_Surface * surf);
     void onCleanup();
