@@ -1,8 +1,15 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
+#include "Window.h"
 #include "Entity.h"
 #include "Render.h"
+#include "util.h"
+#include "time.h"
+#include "Stopwatch.h"
+
+#include <fstream>
+#include <iostream>
 #include <string>
 #include <SDL/SDL.h>
 
@@ -31,6 +38,8 @@ private:
 
     Entity background;
     EntityPlayer entity;
+    
+    Window *win;
     SDL_Surface* displaySurface;
 public:
     /**

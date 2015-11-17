@@ -1,11 +1,5 @@
-#include "Game.h"
-#include "util.h"
-#include "time.h"
-#include <fstream>
 
-#include "Window.h"
-#include "Stopwatch.h"
-#include <iostream>
+#include "Game.h"
 
 //initialising the vector
 std::vector<Entity*> Game::EntityList;
@@ -42,8 +36,7 @@ Game::~Game(){
 */
 
 int Game::Run(){
-    //Declaration of the window
-    Window win(1280,760,32);
+    win = new Window(1280,760);
 
     //The gmae timers start and end
     Stopwatch time;
@@ -54,7 +47,7 @@ int Game::Run(){
     }
 
     //Gets the surface of the screen
-    displaySurface = win.getGraphics();
+    displaySurface = win->getGraphics();
 
     //initialises SDLs event handler
     SDL_Event event;
@@ -87,6 +80,7 @@ int Game::Run(){
         loop(dt);
 
         //deals with all rendering
+        win->setText(" Score: " + std::to_string(score) + " Time: " + std::to_string(60-(int)(time.read()/1000)));
         render();
         if(time.read() > 60000 && !theend){
             theend = true;
@@ -217,12 +211,11 @@ void Game::loop(double dt){
             }
         }
 
-        //spawns a fresh set of enemy entities with a max of 6
+        //spawns a fresh set of enemy entities
         if(currentEntities < maxEntities){
             spawnEntity(new EntityEnemy());
             currentEntities +=1;
         }
-
 
         //check for any collisions with the player
         for( int i = 1; i < EntityList.size(); ++i){
@@ -307,6 +300,7 @@ void Game::render(){
 
     //Flips the two surface buffers to actually display the changes
     SDL_Flip(displaySurface);
+    win->renderTextArea();
 }
 
 /**

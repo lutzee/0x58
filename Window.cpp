@@ -1,9 +1,10 @@
 #include <sstream>
 #include <cstdlib>
+#include <iostream>
 #include <math.h>
 #include "Window.h"
 
-Window::Window(int width, int height, int fontpitch)
+Window::Window(int width, int height)
 {
     winRect.x = 0;
     winRect.y = 0;
@@ -11,6 +12,7 @@ Window::Window(int width, int height, int fontpitch)
     winRect.h = height;
 
     SDL_Init( SDL_INIT_EVERYTHING );
+    TTF_Init();
       
     if(SDL_GetVideoInfo()->hw_available == 1)
         screen = SDL_SetVideoMode( width, height, 32, SDL_OPENGL );
@@ -22,24 +24,18 @@ Window::Window(int width, int height, int fontpitch)
     SDL_EnableUNICODE(1);
 
     backg = SDL_CreateRGBSurface( 0, width, height, 32, 0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000);
+    
+    font = TTF_OpenFont( "./fonts/Roboto-Regular.ttf", 32);
+    textFg = {255,255,255,0};
 }
 
 Window::~Window()
 {
+    TTF_CloseFont(font);
     SDL_FreeSurface(backg);
     SDL_FreeSurface(screen);
     SDL_EnableUNICODE(0);
     SDL_Quit();
-}
-
-void Window::applySurface( int x, int y, SDL_Surface* src, SDL_Surface* dest, SDL_Rect* clip)
-{
-    SDL_Rect r;
-
-    r.x = x;
-    r.y = y;
-
-    SDL_BlitSurface(src, clip, dest, &r);
 }
 
 char Window::getchar()
@@ -62,11 +58,16 @@ char Window::getchar()
     return input;
 }
 
-
-void Window::render()
+void Window::setText(std::string text)
 {
-    SDL_FillRect(screen, &winRect, 0xFF000000);
-    applySurface( 0, 0, backg , screen );
-    SDL_Flip(screen);
+    mtext = text;
 }
 
+void Window::renderTextArea()
+{
+    SDL_Rect textLocation = {0,720,winRect.w,40};
+    SDL_FillRect(screen, &textLocation, SDL_MapRGB(screen->format, 0, 0, 0));
+    SDL_Surface * textArea = TTF_RenderText_Solid( font, mtext.c_str(), textFg );
+    SDL_BlitSurface(textArea,NULL,screen,&textLocation);
+    SDL_FreeSurface(textArea);
+}

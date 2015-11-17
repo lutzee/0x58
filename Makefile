@@ -1,7 +1,7 @@
 SOURCE=Animation.cpp Entity.cpp FPS.cpp  Game.cpp Render.cpp Stopwatch.cpp Surface.cpp Window.cpp main.cpp util.cpp
 MYPROGRAM=0x58
-MYINCLUDES=-Wunreachable-code -Wunused -g
-MYLIBRARIES=-lSDL -lSDLmain -lSDL_gfx
+MYINCLUDES=-Wunreachable-code -Wunused -g --std=c++11
+MYLIBRARIES=-lSDL -lSDLmain -lSDL_gfx -lSDL_ttf
 CC=g++
 
 all: $(MYPROGRAM)

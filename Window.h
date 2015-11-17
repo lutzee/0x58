@@ -3,6 +3,7 @@
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_gfxPrimitives.h>
+#include <SDL/SDL_ttf.h>
 #include <string>
 #include <time.h>
 
@@ -16,15 +17,15 @@ private:
 
     SDL_Surface * screen;
     SDL_Surface * backg;
+    TTF_Font * font;
     SDL_Rect winRect;
     SDL_Event event;
-    SDL_Color  backColour;
+    SDL_Color backColour;
+    SDL_Color textFg;
+    std::string mtext;
 
     bool got;
     char last;
-
-    void applySurface( int x, int y, SDL_Surface* src, SDL_Surface* dest, SDL_Rect* clip = NULL );
-    void moveCursor();
     
 public:
 
@@ -36,7 +37,7 @@ public:
     *   @param  height      The height of the console in pixels, default 768
     *   @param  fontPitch   The pitch of the console font, 16
     */
-    Window(int width=1024, int height=768, int fontPitch=16);
+    Window(int width=1024, int height=768);
 
     /**
     *   Reads a single character from the keyboard.
@@ -46,16 +47,21 @@ public:
     char getchar();
 
     /**
+    *   Sets the text area text
+    */
+    void setText(std::string);
+
+    /**
     *   Returns the console background as an SDL_Surface. Enables fun with graphics!
     *   @return A pointer to the background surface
     */
     SDL_Surface * getGraphics(){return screen;}
 
     /**
-    *   Redraws the console window (background and text)
+    *   Redraws the text area
     */
-    void render();
-
+    void renderTextArea();
+    
     virtual ~Window();
 } ;
 
